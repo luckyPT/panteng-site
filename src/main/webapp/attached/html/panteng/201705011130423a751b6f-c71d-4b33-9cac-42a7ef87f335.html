@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>##网页标题##</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2" style="background-color: #F6F6F6">
+            <h3 align="center">大多为单位</h3>
+
+            <div class="row">
+                <div class="col-xs-3" style="color: #999">panteng</div>
+                <div class="col-xs-3" style="color: #999">##时间##</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading center">
+                            <span style="color: #3c3c3c">内容提要</span>
+                        </div>
+                        <div class="panel-body" id="panelBody" style="background-color: #EEEEF0">
+                            ##内容提要详细内容##
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12">
+                    <div class="col-xs-12">
+                        <div class="code-intro" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:14px;background-color:#FFFFFF;">
+	概要：
+	<p>
+		Java正则表达式的语法与示例
+	</p>
+</div>
+<div class="code-catalog" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:14px;background-color:#FFFFFF;">
+	<h2 style="font-size:20px;">
+		<span class="index">| |<span class="content">目录</span></span>
+	</h2>
+	<ul class="catalog-body" style="margin-left:30px;">
+		<li class="catalog-h2">
+			<span class="catalog-h2-index">1<a href="http://baike.xsoftlab.net/view/207.html#1">匹配验证-验证Email是否正确</a></span>
+		</li>
+		<li class="catalog-h2">
+			<span class="catalog-h2-index">2<a href="http://baike.xsoftlab.net/view/207.html#2">在字符串中查询字符或者字符串</a></span>
+		</li>
+		<li class="catalog-h2">
+			<span class="catalog-h2-index">3<a href="http://baike.xsoftlab.net/view/207.html#3">常用正则表达式</a></span>
+		</li>
+		<li class="catalog-h2">
+			<span class="catalog-h2-index">4<a href="http://baike.xsoftlab.net/view/207.html#4">正则表达式语法</a></span>
+		</li>
+	</ul>
+</div>
+<div id="code-content-body" class="code col-sm-12" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:14px;background-color:#FFFFFF;">
+	<div class="anchor-list">
+		<a name="1"></a>
+	</div>
+	<h2 style="font-size:20px;">
+		<span class="index">1<span class="content">匹配验证-验证Email是否正确</span></span>
+	</h2>
+	<div>
+		<div id="syntaxhighlighter-toolbar">
+			<div class="toolbar">
+				Java&nbsp;|&nbsp;<span class="btn-clipboard btn-clipboard-hover">复制</span>
+			</div>
+		</div>
+		<div id="highlighter_783472" class="syntaxhighlighter Java" style="margin:1em 0px !important;font-size:1em !important;">
+			<table border="0" cellspacing="0" cellpadding="0" style="border:1px solid silver;width:894.545px;background:none !important;height:auto !important;margin:0px !important;padding:0px !important;font-family:Consolas, &quot;font-size:12px !important;" class="ke-zeroborder">
+				<tbody>
+					<tr>
+						<td class="gutter" style="border:1px solid silver;background:none !important;vertical-align:baseline !important;font-family:Consolas, &quot;color:#AFAFAF !important;">
+							<div class="line number1 index0 alt2" style="background:none #F4F4F4 !important;margin:0px !important;padding:0px 0.5em !important;text-align:right !important;vertical-align:baseline !important;">
+								1
+							</div>
+							<div class="line number2 index1 alt1" style="margin:0px !important;padding:0px 0.5em !important;text-align:right !important;vertical-align:baseline !important;">
+								2
+							</div>
+							<div class="line number3 index2 alt2" style="background:none #F4F4F4 !important;margin:0px !important;padding:0px 0.5em !important;text-align:right !important;vertical-align:baseline !important;">
+								3
+							</div>
+							<div class="line number4 index3 alt1" style="margin:0px !important;padding:0px 0.5em !important;text-align:right !important;vertical-align:baseline !important;">
+								4
+							</div>
+							<div class="line number5 index4 alt2" style="background:none #F4F4F4 !important;margin:0px !important;padding:0px 0.5em !important;text-align:right !important;vertical-align:baseline !important;">
+								5
+							</div>
+							<div class="line number6 index5 alt1" style="margin:0px !important;padding:0px 0.5em !important;text-align:right !important;vertical-align:baseline !important;">
+								6
+							</div>
+							<div class="line number7 index6 alt2" style="background:none #F4F4F4 !important;margin:0px !important;padding:0px 0.5em !important;text-align:right !important;vertical-align:baseline !important;">
+								7
+							</div>
+							<div class="line number8 index7 alt1" style="margin:0px !important;padding:0px 0.5em !important;text-align:right !important;vertical-align:baseline !important;">
+								8
+							</div>
+							<div class="line number9 index8 alt2" style="background:none #F4F4F4 !important;margin:0px !important;padding:0px 0.5em !important;text-align:right !important;vertical-align:baseline !important;">
+								9
+							</div>
+							<div class="line number10 index9 alt1" style="margin:0px !important;padding:0px 0.5em !important;text-align:right !important;vertical-align:baseline !important;">
+								10
+							</div>
+							<div class="line number11 index10 alt2" style="background:none #F4F4F4 !important;margin:0px !important;padding:0px 0.5em !important;text-align:right !important;vertical-align:baseline !important;">
+								11
+							</div>
+							<div class="line number12 index11 alt1" style="margin:0px !important;padding:0px 0.5em !important;text-align:right !important;vertical-align:baseline !important;">
+								12
+							</div>
+							<div class="line number13 index12 alt2" style="background:none #F4F4F4 !important;margin:0px !important;padding:0px 0.5em !important;text-align:right !important;vertical-align:baseline !important;">
+								13
+							</div>
+							<div class="line number14 index13 alt1" style="margin:0px !important;padding:0px 0.5em !important;text-align:right !important;vertical-align:baseline !important;">
+								14
+							</div>
+						</td>
+						<td class="code" style="border:1px solid silver;background:none !important;vertical-align:baseline !important;font-family:Consolas, &quot;">
+							<div class="container" style="background:none !important;border:0px !important;margin:0px !important;padding:0px !important;vertical-align:baseline !important;">
+								<div class="line number1 index0 alt2" style="background:none #F4F4F4 !important;border:0px !important;margin:0px !important;padding:0px 1em !important;vertical-align:baseline !important;">
+									public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args)&nbsp;{
+								</div>
+								<div class="line number2 index1 alt1" style="border:0px !important;margin:0px !important;padding:0px 1em !important;vertical-align:baseline !important;">
+									&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;要验证的字符串
+								</div>
+								<div class="line number3 index2 alt2" style="background:none #F4F4F4 !important;border:0px !important;margin:0px !important;padding:0px 1em !important;vertical-align:baseline !important;">
+									&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;str&nbsp;=&nbsp;"service@xsoftlab.net";
+								</div>
+								<div class="line number4 index3 alt1" style="border:0px !important;margin:0px !important;padding:0px 1em !important;vertical-align:baseline !important;">
+									&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;邮箱验证规则
+								</div>
+								<div class="line number5 index4 alt2" style="background:none #F4F4F4 !important;border:0px !important;margin:0px !important;padding:0px 1em !important;vertical-align:baseline !important;">
+									&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;regEx&nbsp;=&nbsp;"[a-zA-Z_]{1,}[0-9]{0,}@(([a-zA-z0-9]-*){1,}\\.){1,3}[a-zA-z\\-]{1,}";
+								</div>
+								<div class="line number6 index5 alt1" style="border:0px !important;margin:0px !important;padding:0px 1em !important;vertical-align:baseline !important;">
+									&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;编译正则表达式
+								</div>
+								<div class="line number7 index6 alt2" style="background:none #F4F4F4 !important;border:0px !important;margin:0px !important;padding:0px 1em !important;vertical-align:baseline !important;">
+									&nbsp;&nbsp;&nbsp;&nbsp;Pattern&nbsp;pattern&nbsp;=&nbsp;Pattern.compile(regEx);
+								</div>
+								<div class="line number8 index7 alt1" style="border:0px !important;margin:0px !important;padding:0px 1em !important;vertical-align:baseline !important;">
+									&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;忽略大小写的写法
+								</div>
+								<div class="line number9 index8 alt2" style="background:none #F4F4F4 !important;border:0px !important;margin:0px !important;padding:0px 1em !important;vertical-align:baseline !important;">
+									&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Pattern&nbsp;pat&nbsp;=&nbsp;Pattern.compile(regEx,&nbsp;Pattern.CASE_INSENSITIVE);
+								</div>
+								<div class="line number10 index9 alt1" style="border:0px !important;margin:0px !important;padding:0px 1em !important;vertical-align:baseline !important;">
+									&nbsp;&nbsp;&nbsp;&nbsp;Matcher&nbsp;matcher&nbsp;=&nbsp;pattern.matcher(str);
+								</div>
+								<div class="line number11 index10 alt2" style="background:none #F4F4F4 !important;border:0px !important;margin:0px !important;padding:0px 1em !important;vertical-align:baseline !important;">
+									&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;字符串是否与正则表达式相匹配
+								</div>
+								<div class="line number12 index11 alt1" style="border:0px !important;margin:0px !important;padding:0px 1em !important;vertical-align:baseline !important;">
+									&nbsp;&nbsp;&nbsp;&nbsp;boolean&nbsp;rs&nbsp;=&nbsp;matcher.matches();
+								</div>
+								<div class="line number13 index12 alt2" style="background:none #F4F4F4 !important;border:0px !important;margin:0px !important;padding:0px 1em !important;vertical-align:baseline !important;">
+									&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(rs);
+								</div>
+								<div class="line number14 index13 alt1" style="border:0px !important;margin:0px !important;padding:0px 1em !important;vertical-align:baseline !important;">
+									}
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="anchor-list">
+		<a name="2"></a>
+	</div>
+	<h2 style="font-size:20px;">
+		<span class="index">2<span class="content">在字符串中查询字符或者字符串</span></span>
+	</h2>
+	<div>
+		<div id="syntaxhighlighter-toolbar">
+			<div class="toolbar">
+				Java&nbsp;|&nbsp;<span class="btn-clipboard btn-clipboard-hover">复制</span>
+			</div>
+		</div>
+	</div>
+</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

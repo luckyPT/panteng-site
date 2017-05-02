@@ -1,4 +1,62 @@
-package com.site.panteng.controller;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>##网页标题##</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2" style="background-color: #F6F6F6">
+            <h3 align="center">第一篇文章</h3>
+
+            <div class="row">
+                <div class="col-xs-3" style="color: #999">panteng</div>
+                <div class="col-xs-3" style="color: #999">##时间##</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading center">
+                            <span style="color: #3c3c3c">内容提要</span>
+                        </div>
+                        <div class="panel-body" id="panelBody" style="background-color: #EEEEF0">
+                            ##内容提要详细内容##
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12">
+                    <div class="col-xs-12">
+                        <p>
+	测试发表文章
+</p>
+<p>
+	<br />
+</p>
+<p>
+	<img style="max-width:100%;"src="/attached/image/20170501/20170501110155_436.jpg" alt="" />
+</p>
+<p>
+	<br />
+</p>
+<p>
+	美丽的传说
+</p>
+<p>
+	<br />
+</p>
+<p>
+<pre class="prettyprint lang-java">package com.site.panteng.controller;
 
 import com.google.common.base.Strings;
 import com.site.panteng.dao.ArticleDao;
@@ -87,18 +145,18 @@ public class MainController {
         DateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
         String fileName = format.format(new Date()) + UUID.randomUUID().toString();
         article_html = article_html.replace("##文章详细内容##", content1);
-        article_html = article_html.replaceAll("<img ", "<img style=\"max-width:100%;\"");
+        article_html = article_html.replaceAll("&lt;img ", "&lt;img style=\"max-width:100%;\"");
         try {
         	//存储到数据库中
-        	Article article = new Article(1,fileName,title,content1.substring(0,content1.length()>100?100:content1.length()),
+        	Article article = new Article(1,fileName,title,content1.substring(0,content1.length()&gt;100?100:content1.length()),
         			"panteng","2017","java;spring");
         	articleDao.addArticle(article);
             FileUtil.createFile(filePath, fileName + ".html", article_html, "utf-8");
             resp.setContentType("text/html");
             resp.setCharacterEncoding("UTF-8");
             resp.getWriter().println(
-                    "添加新文章成功！<br><a target=\"blank\" href=\""
-                            + "attached/html/" + fileName + ".html\">点击查看</a>");
+                    "添加新文章成功！&lt;br&gt;&lt;a target=\"blank\" href=\""
+                            + "attached/html/" + fileName + ".html\"&gt;点击查看&lt;/a&gt;");
         } catch (Exception ex) {
             logger.error("{}", ex);
         }
@@ -133,7 +191,18 @@ public class MainController {
     
     @RequestMapping(value = "/articleList")
     @ResponseBody
-    public List<Article> articleList(){
+    public List&lt;Article&gt; articleList(){
     	return articleDao.getArticles("", 0, 10);
     }
 }
+</pre>
+</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

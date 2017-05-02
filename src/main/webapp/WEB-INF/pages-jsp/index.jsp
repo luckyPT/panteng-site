@@ -49,10 +49,40 @@
                     	</div>
                     </div>
                 </div>
-                <div class="col-md-9 col-sm-12" style="background-color:#0F0">
-                    <span style="color:#FFF;font-weight:bold;margin-top:5px;display:block;">
-                        文章
-                    </span>
+                <div id="articles_div" class="col-md-9 col-sm-12" style="background-color:#0F0">
+                    <div style="background-color:#F0F0F0; border:1px solid;margin-top:5px;">
+                    	<a href="#" target="_blank"><h3>MongoDB入门</h3></a>
+                    	<hr>
+                    	<div class="form-inline">
+                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">java</span>&nbsp
+                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">mongo</span>&nbsp
+                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">db</span>&nbsp
+                    	</div>
+                    	<span>
+                    		<p>mongoDb是一种非关系型数据库</p>
+                    	</span>
+                    	<span style="text-align:right;display:block">
+                    		发布人&nbsp发布时间&nbsp
+                    	</span>
+                    </div>
+                    
+                    <div v-for="article in articles" style="background-color:#F0F0F0; border:1px solid;margin-top:5px;">
+                    	<a v-bind:href="['/attached/html/panteng/' + article.fileName + '.html']" target="_blank"><h3>{{article.title}}</h3></a>
+                    	<hr>
+                    	<div class="form-inline">
+                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">java</span>&nbsp
+                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">mongo</span>&nbsp
+                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">db</span>&nbsp
+                    	</div>
+                    	<span>
+                    		<p>{{article.summary}}</p>
+                    	</span>
+                    	<span style="text-align:right;display:block">
+                    		发布人&nbsp发布时间&nbsp
+                    	</span>
+                    	
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -78,6 +108,11 @@
 		    </div>
 		  </div>
 		</div>
+		<!-- <div id="articles_div">
+		<li v-for="article in articles">
+           	{{article.title}}
+        </li>
+        </div> -->
        	<script src="https://cdn.bootcss.com/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
        	<script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 		<script type="text/javascript">
@@ -119,6 +154,34 @@
 					}
 				});
 			}
+			var article1={};
+			article1.title='java入门';
+			article1.sumary='java 是一门高级编程语言，最大的特性在于一次编译，到处执行';
+			var articleList = new Vue({
+				el:"#articles_div",
+				data:{
+					articles:[
+						{title:'java入门',summary:'djqiodjwqoi'},
+						{title:'java入门',summary:'djqiodjwqoi'}
+					]
+				}
+			});
+			
+			function getArticleList(){
+				$.ajax({
+		            url: '/articleList',
+		            type: 'POST', //GET
+		            data: '',
+		            async: true,    //或false,是否异步
+		            timeout: 15000,    //超时时间
+		            dataType: 'json', //返回的数据格式：json/xml/html/script/jsonp/text
+		            success: function (resp) {
+		            	articleList.articles=resp;
+					}
+				});
+			}
+			
+			getArticleList();
 		</script>
      </body>
 </html>
