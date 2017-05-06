@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.hibernate.validator.internal.util.privilegedactions.LoadClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.google.common.base.Strings;
 import com.site.panteng.entity.Article;
+import com.site.panteng.util.DateUtil;
 
 @Repository
 public class ArticleDao {
@@ -42,12 +44,16 @@ public class ArticleDao {
 		}
 		
 		List articles =  jdbcTemplate.queryForList(sql);
+		
 		Iterator iterator = articles.iterator();
 		while (iterator.hasNext()) {
 			Map articleMap = (Map)iterator.next();
 			Article article = new Article();
 			article.setTitle((String)articleMap.get("title"));
 			article.setSummary((String)articleMap.get("summary"));
+			article.setPubTime(DateUtil.longToDate(Long.parseLong((String)articleMap.get("pubTime")), "yyyy-MM-dd HH:mm:ss"));
+			articleMap.put("pubTime", DateUtil.longToDate(Long.parseLong((String)articleMap.get("pubTime")), "yyyy-MM-dd HH:mm:ss"));
+			articleMap.put("tags", ((String)articleMap.get("tags")).split(","));
 		}
 		return articles;
 		

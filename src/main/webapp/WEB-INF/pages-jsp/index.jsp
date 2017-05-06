@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-xs-3">
                     <span style="cursor:pointer;color:#FFF;font-weight:bold;margin-top:5px;display:block;">
-                    Logo
+                    猿媛客栈
                     </span>
                 </div>
                 <div class="col-md-1 offset-md-6 col-sm-2 offset-sm-4 col-xs-2">
@@ -49,38 +49,24 @@
                     	</div>
                     </div>
                 </div>
-                <div id="articles_div" class="col-md-9 col-sm-12" style="background-color:#0F0">
-                    <div style="background-color:#F0F0F0; border:1px solid;margin-top:5px;">
-                    	<a href="#" target="_blank"><h3>MongoDB入门</h3></a>
-                    	<hr>
-                    	<div class="form-inline">
-                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">java</span>&nbsp
-                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">mongo</span>&nbsp
-                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">db</span>&nbsp
-                    	</div>
-                    	<span>
-                    		<p>mongoDb是一种非关系型数据库</p>
-                    	</span>
-                    	<span style="text-align:right;display:block">
-                    		发布人&nbsp发布时间&nbsp
-                    	</span>
-                    </div>
-                    
-                    <div v-for="article in articles" style="background-color:#F0F0F0; border:1px solid;margin-top:5px;">
+                <div id="articles_div" class="col-md-9 col-sm-12" style="background-color:#99CCFF">
+                    <div v-for="article in articles" style="margin-bottom:15px;box-shadow: 5px 5px 2px #3366CC;background-color:#F0F0F0; border:#00CC66 1px solid;margin-top:5px;">
                     	<a v-bind:href="['/attached/html/panteng/' + article.fileName + '.html']" target="_blank"><h3>{{article.title}}</h3></a>
                     	<hr>
                     	<div class="form-inline">
-                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">java</span>&nbsp
-                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">mongo</span>&nbsp
-                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">db</span>&nbsp
+                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[0]}}</span>&nbsp
+                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[1]}}</span>&nbsp
+                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[2]}}</span>&nbsp
+                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[3]}}</span>&nbsp
+                    		<span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[4]}}</span>&nbsp
                     	</div>
+                    	<br>
                     	<span>
                     		<p>{{article.summary}}</p>
                     	</span>
                     	<span style="text-align:right;display:block">
-                    		发布人&nbsp发布时间&nbsp
+                    		{{article.nickName}}&nbsp{{article.pubTime}}&nbsp
                     	</span>
-                    	
                     </div>
                     
                 </div>

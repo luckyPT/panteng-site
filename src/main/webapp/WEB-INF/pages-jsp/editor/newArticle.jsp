@@ -19,6 +19,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="/kindeditor/themes/default/default.css" />
 	<link rel="stylesheet" href="/kindeditor/plugins/code/prettify.css" />
+	<style type="text/css">
+	.add-style-label {
+            padding-top: 6px;
+            padding-left: 12px;
+            margin-bottom: 0px;
+    }
+    </style>
 	<script charset="utf-8" src="/kindeditor/kindeditor.js"></script>
 	<script charset="utf-8" src="/kindeditor/lang/zh_CN.js"></script>
 	<script charset="utf-8" src="/kindeditor/plugins/code/prettify.js"></script>
@@ -50,19 +57,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<div class="row">
   			<div class="col-md-8 offset-md-2 col-sm-12">
 			    <form name="example" method="post" action="/user/<%= request.getParameter("userName")%>/addArticle">
-			    	<div class="form-inline">
-			  				<h5>标题:&nbsp</h5>
-			  				<input type="text" class="form-control" id="title" name="title" placeholder="标题" style="width:30%">
+			    	<div class="form-inline" style="background-color:#E0E0E0;height:50px;">
+			  				<h5 class="add-style-label">标&nbsp题:&nbsp&nbsp&nbsp&nbsp</h5>
+			  				<input type="text" id="title" name="title" placeholder="标题" style="width:30%">
 			  		</div>
-			  		<br>
 					<textarea class="form-control" name="content1" cols="100" rows="8" style="width:100%;height:480px;visibility:hidden;"></textarea>
-					<br />
-					<div class="form-inline">
-			  				<h5>标签:&nbsp</h5>
-			  				<input type="text" style="width:50%" class="form-control" id="tags" name="tags" placeholder="请使用英文逗号分隔">
-			  				<input class="btn btn-info" type="submit" name="button" value="保存" />
+					<div class="form-inline" style="background-color:#E0E0E0;height:50px;">
+			  				<h5 class="add-style-label">标&nbsp签:&nbsp&nbsp&nbsp&nbsp</h5>
+			  				<input type="text" style="width:50%" id="tags" name="tags" placeholder="请使用英文逗号分隔">
 			  		</div>
-			  		<br>
+			  		<input class="btn btn-info" type="submit" name="button" value="保存" />
 				</form>
 			</div>
 		</div>
