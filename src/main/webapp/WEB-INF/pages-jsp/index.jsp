@@ -5,8 +5,12 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap-grid.min.css" rel="stylesheet">
-        <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <style type="text/css">
+		    [v-cloak] {
+		        display: none !important;
+		    }
+        </style>
         <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
         <title>猿媛驿站</title>
@@ -20,13 +24,13 @@
                     猿媛客栈
                     </span>
                 </div>
-                <div class="col-md-1 offset-md-6 col-sm-2 offset-sm-4 col-xs-2">
-	                <span id="login_span" data-toggle="modal" data-target="#loginModal" style="cursor:pointer;color:#FFF;font-weight:bold;margin-top:5px;display:block; text-align:center;"
+                <div class="col-md-1 col-md-offset-6 col-sm-2 col-sm-offset-4 col-xs-offset-4 col-xs-2">
+	                <span v-cloak id="login_span" data-toggle="modal" data-target="#loginModal" style="cursor:pointer;color:#FFF;font-weight:bold;margin-top:5px;display:block; text-align:center;"
 	                	onmouseover="this.style.background='#CCCCCC'" onmouseout="this.style.background='#000000'">
 	                    	{{login}}
 	                </span>
                 </div>
-                <div class="col-md-1 col-sm-0 col-xs-0">
+                <div class="col-md-1 col-sm-2 col-xs-2">
                     <span style="cursor:pointer;color:#FFF;font-weight:bold;margin-top:5px;display:block; text-align:center;"
                     	onmouseover="this.style.background='#CCCCCC'" onmouseout="this.style.background='#000000'">
 						注册
@@ -36,21 +40,41 @@
         </div>
         <div class="container-fluid" style="background-color:black">
             <!--功能区-->
-            <div class="row" style="background-color:#F00">
-                <div class="col-md-3 col-sm-12">
+            <div class="row" style="background-color:#F00;">
+                <div class="col-md-3 col-xs-12 col-sm-12" style="border:#000FFF solid 2px;height:auto;background-color:#FFFFFF">
                     <div class="row">
-                    	<div class="col-md-6 col-sm-12">
+                    	<div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
                     		<a href="/editor/newArticle?userName=panteng" target="_blank">
-                    			<img src="/images/addArticle.jpg" style="max-width:100%;" class="img-polaroid">
+                    			<img src="/images/addArticle.png" style="max-width:100%; height:50px" class="img-polaroid">
                     		</a>
+                    		<br>
+                    		<label>添加文章</label>
                     	</div>
-                    	<div class="col-md-6 col-sm-12">
-                    		功能2
+                    	<div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
+                    		<a href="/editor/newArticle?userName=panteng" target="_blank">
+                    			<img src="/images/recommended.png" style="max-width:100%;height:50px" class="img-polaroid">
+                    		</a>
+                    		<br>
+                    		<label>推荐文章</label>
+                    	</div>
+                    	<div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
+                    		<a href="/editor/newArticle?userName=panteng" target="_blank">
+                    			<img src="/images/programers.png" style="max-width:100%;height:50px" class="img-polaroid">
+                    		</a>
+                    		<br>
+                    		<label>猿媛简历</label>
+                    	</div>
+                    	<div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
+                    		<a href="/editor/newArticle?userName=panteng" target="_blank">
+                    			<img src="/images/contract.png" style="max-width:100%;height:50px" class="img-polaroid">
+                    		</a>
+                    		<br>
+                    		<label>联系作者</label>
                     	</div>
                     </div>
                 </div>
-                <div id="articles_div" class="col-md-9 col-sm-12" style="background-color:#99CCFF">
-                    <div v-for="article in articles" style="margin-bottom:15px;box-shadow: 5px 5px 2px #3366CC;background-color:#F0F0F0; border:#00CC66 1px solid;margin-top:5px;">
+                <div id="articles_div" class="col-md-9 col-xs-12 col-sm-12" style="border:solid 2px;background-color:#99CCFF">
+                    <div v-for="article in articles" style="margin-bottom:10px;box-shadow: 5px 5px 2px #3366CC;background-color:#F0F0F0; border:#00CC66 1px solid;margin-top:5px;">
                     	<a v-bind:href="['/attached/html/panteng/' + article.fileName + '.html']" target="_blank"><h3>{{article.title}}</h3></a>
                     	<hr>
                     	<div class="form-inline">
@@ -64,16 +88,18 @@
                     	<span>
                     		<p>{{article.summary}}</p>
                     	</span>
-                    	<span style="text-align:right;display:block">
-                    		{{article.nickName}}&nbsp{{article.pubTime}}&nbsp
+                    	<span v-cloak style="color:#C0C0C0;text-align:right;display:block">
+                    		{{article.nickName}}&nbsp|&nbsp{{article.pubTime}}&nbsp
                     	</span>
                     </div>
-                    
+                    <div class="pagination">
+					  
+					</div>
                 </div>
             </div>
         </div>
         <!-- 登录框 -->
-		<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div id="loginModal" class="modal fade" style="" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -94,13 +120,7 @@
 		    </div>
 		  </div>
 		</div>
-		<!-- <div id="articles_div">
-		<li v-for="article in articles">
-           	{{article.title}}
-        </li>
-        </div> -->
-       	<script src="https://cdn.bootcss.com/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-       	<script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+       	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script type="text/javascript">
 			var userName=new Vue({
 				el:"#userName",
