@@ -7,7 +7,6 @@ import com.site.panteng.entity.Article;
 import com.site.panteng.entity.Constants;
 import com.site.panteng.entity.User;
 import com.site.panteng.util.FileUtil;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -23,11 +22,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by panteng on 2017/4/8.
@@ -49,37 +48,37 @@ public class MainController {
 
     @RequestMapping("/")
     @ResponseBody
-    ModelAndView home(){
+    ModelAndView home() {
         try {
             User user = userDao.getUserByNickName("panteng");
             ModelAndView mv = new ModelAndView("index");
             return mv;
-        }catch (Exception e){
-            logger.error("ERROR:",e);
+        } catch (Exception e) {
+            logger.error("ERROR:", e);
         }
         return null;
     }
 
     @RequestMapping("/editor/{*}")
     @ResponseBody
-    ModelAndView editor(){
+    ModelAndView editor() {
         try {
-            String uri = request.getRequestURI().replaceFirst("/","");
+            String uri = request.getRequestURI().replaceFirst("/", "");
             ModelAndView mv = new ModelAndView(uri);
             return mv;
-        }catch (Exception e){
-            logger.error("ERROR:",e);
+        } catch (Exception e) {
+            logger.error("ERROR:", e);
         }
         return null;
     }
 
-    public static void main(String[] arges){
-        SpringApplication.run(MainController.class,arges);
+    public static void main(String[] arges) {
+        SpringApplication.run(MainController.class, arges);
     }
-    
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public void save(HttpServletRequest req, HttpServletResponse resp, String title,String content1,String tags) {
+    public void save(HttpServletRequest req, HttpServletResponse resp, String title, String content1, String tags) {
         String article_html = Constants.ARTICLE_TEMPLATE;
         String realPath = req.getSession().getServletContext().getRealPath("/");
 
@@ -89,10 +88,10 @@ public class MainController {
         article_html = article_html.replace("##文章详细内容##", content1);
         article_html = article_html.replaceAll("<img ", "<img style=\"max-width:100%;\"");
         try {
-        	//存储到数据库中
-        	Article article = new Article(1,fileName,title,content1.substring(0,content1.length()>100?100:content1.length()),
-        			"panteng","2017","java;spring");
-        	articleDao.addArticle(article);
+            //存储到数据库中
+            Article article = new Article(1, fileName, title, content1.substring(0, content1.length() > 100 ? 100 : content1.length()),
+                    "panteng", "2017", "java;spring");
+            articleDao.addArticle(article);
             FileUtil.createFile(filePath, fileName + ".html", article_html, "utf-8");
             resp.setContentType("text/html");
             resp.setCharacterEncoding("UTF-8");
@@ -106,34 +105,35 @@ public class MainController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public void login(HttpServletRequest req, HttpServletResponse resp) throws Exception{
-    	String userName = req.getParameter("userName");
-    	String pwd = req.getParameter("passWord");
-    	if(Strings.isNullOrEmpty(userName)||Strings.isNullOrEmpty(pwd)){
-    		resp.getWriter().println("{\"loginSuccess\":\"false\",\"errorMsg\":\"用户名或密码为空\"}");
-    		return;
-    	}
-    	User user = userDao.getUserByNickName(userName);
-    	if(user==null){
-    		resp.getWriter().println("{\"loginSuccess\":\"false\",\"errorMsg\":\"用户名不存在\"}");
-    		return;
-    	}
-    	
-    	if(!pwd.equals(user.getPwd())){
-    		resp.getWriter().println("{\"loginSuccess\":\"false\",\"errorMsg\":\"密码不正确\"}");
-    		return;
-    	}else {
-			HttpSession session = req.getSession();
-			session.setAttribute(userName, userName + userName);
-			session.setMaxInactiveInterval(10);
-			resp.getWriter().println("{\"loginSuccess\":\"true\"}");
-			return;
-		}
+    public void login(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        String userName = req.getParameter("userName");
+        String pwd = req.getParameter("passWord");
+        if (Strings.isNullOrEmpty(userName) || Strings.isNullOrEmpty(pwd)) {
+            resp.getWriter().println("{\"loginSuccess\":\"false\",\"errorMsg\":\"用户名或密码为空\"}");
+            return;
+        }
+        User user = userDao.getUserByNickName(userName);
+        if (user == null) {
+            resp.getWriter().println("{\"loginSuccess\":\"false\",\"errorMsg\":\"用户名不存在\"}");
+            return;
+        }
+
+        if (!pwd.equals(user.getPwd())) {
+            resp.getWriter().println("{\"loginSuccess\":\"false\",\"errorMsg\":\"密码不正确\"}");
+            return;
+        } else {
+            HttpSession session = req.getSession();
+            session.setAttribute("userName", userName);
+            session.setAttribute(userName, userName + userName);
+            session.setMaxInactiveInterval(60);
+            resp.getWriter().println("{\"loginSuccess\":\"true\"}");
+            return;
+        }
     }
-    
+
     @RequestMapping(value = "/articleList")
     @ResponseBody
-    public List<Article> articleList(){
-    	return articleDao.getArticles("", 0, 10);
+    public List<Article> articleList() {
+        return articleDao.getArticles("", 0, 10);
     }
 }
