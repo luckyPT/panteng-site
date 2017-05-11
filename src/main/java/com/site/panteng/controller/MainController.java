@@ -133,7 +133,7 @@ public class MainController {
 
     @RequestMapping(value = "/articleList")
     @ResponseBody
-    public List<Article> articleList() {
-        return articleDao.getArticles("", 0, 10);
+    public List<Article> articleList(int pageNum) {
+        return articleDao.getArticles("", pageNum, 10);
     }
 }
