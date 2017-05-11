@@ -81,6 +81,7 @@
     </dependencies>
     <build>
         <finalName>ROOT</finalName>
+        <directory>/home/mi/software/apache-tomcat-7.0.77/webapps</directory>
         <resources>
             <!--<resource>
                 <directory>${project.basedir}/src/web</directory>
