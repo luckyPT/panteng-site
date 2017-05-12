@@ -20,8 +20,17 @@ public class MyFilter extends OncePerRequestFilter {
         PropertyConfigurator.configure(System.getProperty("user.dir") + "/webapps/WEB-INF/classes/log4j.properties");
     }
 
+    /**
+     * 统计记录
+     *
+     * @param httpServletRequest
+     * @param httpServletResponse
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        logger.info("myFilter 拦截成功... .." + httpServletRequest.getRemoteAddr());
+        logger.info("访问统计 " + httpServletRequest.getRemoteAddr() + " url = " + httpServletRequest.getRequestURL());
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 }

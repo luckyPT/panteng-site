@@ -10,6 +10,11 @@
         [v-cloak] {
             display: none !important;
         }
+
+        .removeBoderBlank {
+            padding-right: 3px;
+            padding-left: 1px;
+        }
     </style>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -39,67 +44,72 @@
         </div>
     </div>
 </div>
-<div class="container-fluid" style="background-color:black">
+<div class="container-fluid removeBoderBlank" style="background-color:#99CCFF;">
     <!--功能区-->
-    <div class="row" style="background-color:#F00;">
-        <div class="col-md-3 col-xs-12 col-sm-12" style="border:#000FFF solid 2px;height:auto;background-color:#FFFFFF">
-            <div class="row">
-                <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
-                    <a href="/editor/newArticle?userName=panteng" target="_blank">
-                        <img src="/images/addArticle.png" style="max-width:100%; height:50px" class="img-polaroid">
-                    </a>
-                    <br>
-                    <label>添加文章</label>
-                </div>
-                <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
-                    <a href="/editor/newArticle?userName=panteng" target="_blank">
-                        <img src="/images/recommended.png" style="max-width:100%;height:50px" class="img-polaroid">
-                    </a>
-                    <br>
-                    <label>推荐文章</label>
-                </div>
-                <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
-                    <a href="/editor/newArticle?userName=panteng" target="_blank">
-                        <img src="/images/programers.png" style="max-width:100%;height:50px" class="img-polaroid">
-                    </a>
-                    <br>
-                    <label>猿媛简历</label>
-                </div>
-                <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
-                    <a href="/editor/newArticle?userName=panteng" target="_blank">
-                        <img src="/images/contract.png" style="max-width:100%;height:50px" class="img-polaroid">
-                    </a>
-                    <br>
-                    <label>联系作者</label>
-                </div>
+    <div class="col-md-3 col-xs-12 col-sm-12" style="border:#000FFF solid 0px;height:auto;">
+        <div class="row">
+            <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
+                <a href="/editor/newArticle?userName=panteng" target="_blank">
+                    <img src="/images/addArticle.png" style="max-width:100%; height:50px" class="img-polaroid">
+                </a>
+                <br>
+                <label>添加文章</label>
+            </div>
+            <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
+                <a href="/editor/newArticle?userName=panteng" target="_blank">
+                    <img src="/images/recommended.png" style="max-width:100%;height:50px" class="img-polaroid">
+                </a>
+                <br>
+                <label>推荐文章</label>
+            </div>
+            <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
+                <a href="/editor/newArticle?userName=panteng" target="_blank">
+                    <img src="/images/programers.png" style="max-width:100%;height:50px" class="img-polaroid">
+                </a>
+                <br>
+                <label>猿媛简历</label>
+            </div>
+            <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
+                <a href="/editor/newArticle?userName=panteng" target="_blank">
+                    <img src="/images/contract.png" style="max-width:100%;height:50px" class="img-polaroid">
+                </a>
+                <br>
+                <label>联系作者</label>
             </div>
         </div>
-        <div id="articles_div" class="col-md-9 col-xs-12 col-sm-12" style="border:solid 2px;background-color:#99CCFF">
-            <div v-for="article in articles"
-                 style="margin-bottom:10px;box-shadow: 5px 5px 2px #3366CC;background-color:#F0F0F0; border:#00CC66 1px solid;margin-top:5px;">
-                <a v-bind:href="['/attached/html/panteng/' + article.fileName + '.html']" target="_blank"><h3>
-                    {{article.title}}</h3></a>
-                <hr>
-                <div class="form-inline">
-                    <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[0]}}</span>&nbsp
-                    <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[1]}}</span>&nbsp
-                    <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[2]}}</span>&nbsp
-                    <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[3]}}</span>&nbsp
-                    <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[4]}}</span>&nbsp
-                </div>
-                <br>
+    </div>
+    <!--文章列表-->
+    <div id="articles_div" class="col-md-9 col-xs-12 col-sm-12 removeBoderBlank"
+         style="border:#009393 solid 0px;background-color:#99CCFF">
+        <div v-for="article in articles"
+             style="margin-bottom:10px;box-shadow: 5px 5px 2px #3366CC;background-color:#F0F0F0; border:#00CC66 1px solid;margin-top:5px;">
+            <a v-bind:href="['/attached/html/panteng/' + article.fileName + '.html']" target="_blank"><h3>
+                {{article.title}}</h3></a>
+            <hr>
+            <div class="form-inline">
+                <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[0]}}</span>&nbsp
+                <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[1]}}</span>&nbsp
+                <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[2]}}</span>&nbsp
+                <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[3]}}</span>&nbsp
+                <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[4]}}</span>&nbsp
+            </div>
+            <br>
                     	<span>
                     		<p>{{article.summary}}</p>
                     	</span>
                     	<span v-cloak style="color:#C0C0C0;text-align:right;display:block">
                     		{{article.nickName}}&nbsp|&nbsp{{article.pubTime}}&nbsp
                     	</span>
-            </div>
-            <div class="pagination">
-
-            </div>
+        </div>
+        <div style="float:right;position: relative;margin-top: -600px;z-index: 2">
+            <a href="javascript:scroll(0,0)">返回顶部</a>
+        </div>
+        <div style="text-align: center; height: 200px">
+            <span>加载中... ...</span>
+            <a onclick="getArticleList()">手动加载</a>
         </div>
     </div>
+</div>
 </div>
 <!-- 登录框 -->
 <div id="loginModal" class="modal fade" style="" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
@@ -173,10 +183,7 @@
     var articleList = new Vue({
         el: "#articles_div",
         data: {
-            articles: [
-                {title: 'java入门', summary: 'djqiodjwqoi'},
-                {title: 'java入门', summary: 'djqiodjwqoi'}
-            ]
+            articles: []
         }
     });
 
@@ -189,12 +196,40 @@
             timeout: 15000,    //超时时间
             dataType: 'json', //返回的数据格式：json/xml/html/script/jsonp/text
             success: function (resp) {
-                articleList.articles = resp;
+                console.log(typeof resp);
+                articleList.articles = articleList.articles.concat(resp);
             }
         });
     }
 
     getArticleList();
+    /**
+     * 判断滚动条是否到最底端的方法
+     * @param Element obj
+     */
+    function isScrollBottom(obj) {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    /*添加滚动监听事件*/
+    $(window).bind('scroll', function () {
+        if (isScrollBottom(window)) {
+            $.ajax({
+                url: '/articleList?pageNum=1',
+                type: 'POST', //GET
+                data: '',
+                async: true,    //或false,是否异步
+                timeout: 15000,    //超时时间
+                dataType: 'json', //返回的数据格式：json/xml/html/script/jsonp/text
+                success: function (resp) {
+                    articleList.articles = articleList.articles.concat(resp);
+                }
+            });
+        }
+    });
 </script>
 </body>
 </html>
