@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.site.panteng.dao.ArticleDao;
 import com.site.panteng.entity.Article;
 import com.site.panteng.entity.Constants;
+import com.site.panteng.util.DateUtil;
 import com.site.panteng.util.FileUtil;
 
 @Controller
@@ -31,19 +32,23 @@ public class UserController {
 			String title,String tags){
 		String article_html = Constants.ARTICLE_TEMPLATE;
         String realPath = req.getSession().getServletContext().getRealPath("/");
-
+        userName=(String)req.getSession().getAttribute("userName");
+        System.out.println("---------" + userName);
         String filePath = realPath + "attached/html/"+userName+"/";
         DateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
         String fileName = format.format(new Date()) + UUID.randomUUID().toString();
+        article_html = article_html.replace("##网页标题##", title + " - "+userName);
         article_html = article_html.replace("##文章详细内容##", content1);
         article_html = article_html.replace("##文章标题##", title);
-        article_html = article_html.replace("##文章来源##", "panteng");
+        article_html = article_html.replace("##文章来源##", userName);
+        article_html = article_html.replace("##时间##", DateUtil.longToDate(System.currentTimeMillis(), "yyyy-MM-dd HH:mm:ss"));
+        article_html = article_html.replace("##关键词##", tags.replaceAll(",", ";   "));
         article_html = article_html.replaceAll("<img ", "<img style=\"max-width:100%;\"");
         try {
         	String summary = content1.replaceAll("<[^>]*>", "");
         	//存储到数据库中
-        	Article article = new Article(1,"'" + fileName + "'","'"+title+"'","'" + summary.substring(0,content1.length()>100?100:content1.length()) + "'",
-        			"'panteng'","'"+System.currentTimeMillis()+"'","'" + tags+"'");
+        	Article article = new Article(1,"'" + fileName + "'","'"+title+"'","'" + summary.substring(0,summary.length()>100?100:summary.length()) + "'",
+        			"'"+ userName + "'","'"+System.currentTimeMillis()+"'","'" + tags+"'");
         	int addResult = articleDao.addArticle(article);
         	System.out.println("增加文章结果：" + addResult);
             FileUtil.createFile(filePath, fileName + ".html", article_html, "utf-8");

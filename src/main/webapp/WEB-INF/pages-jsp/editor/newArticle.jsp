@@ -56,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<div class="container-fluid" style="height:auto;margin-top:10px">
   		<div class="row">
   			<div class="col-md-8 offset-md-2 col-xs-12 col-sm-12">
-			    <form name="example" method="post" action="/user/<%= request.getParameter("userName")%>/addArticle">
+			    <form name="example" method="post" action="/user/<%= session.getAttribute("userName")%>/addArticle">
 			    	<div class="form-inline" style="background-color:#E0E0E0;height:50px;">
 			  				<h5 class="add-style-label">标&nbsp题:&nbsp&nbsp&nbsp&nbsp</h5>
 			  				<input type="text" id="title" name="title" placeholder="标题" style="width:30%">

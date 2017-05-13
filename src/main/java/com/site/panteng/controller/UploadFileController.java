@@ -63,7 +63,7 @@ public class UploadFileController {
 
         String dirName = request.getParameter("dir");
         if (dirName == null) {
-            dirName = "image";
+            dirName = "image/滴水藏海";
         }
         if (!extMap.containsKey(dirName)) {
             return getError("目录名不正确。");

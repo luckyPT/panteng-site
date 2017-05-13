@@ -15,6 +15,13 @@
             padding-right: 3px;
             padding-left: 1px;
         }
+        
+        .fd{
+        	position:fixed;
+        	top:50%; 
+        	right:10px; 
+        	margin:-50px 0 0 -50px;
+        }
     </style>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -23,12 +30,13 @@
 <body>
 <div class="container-fluid" style="height:auto;background-color:black">
     <!--titleBar-->
-    <div class="row">
+    <div class="row" style="height:24px">
         <div class="col-md-4 col-sm-4 col-xs-3">
                     <span style="cursor:pointer;color:#FFF;font-weight:bold;margin-top:5px;display:block;">
                     猿媛客栈
                     </span>
         </div>
+        
         <div class="col-md-1 col-md-offset-6 col-sm-2 col-sm-offset-4 col-xs-offset-4 col-xs-2">
 	                <span v-cloak id="login_span" data-toggle="modal" data-target="#loginModal"
                           style="cursor:pointer;color:#FFF;font-weight:bold;margin-top:5px;display:block; text-align:center;"
@@ -49,27 +57,27 @@
     <div class="col-md-3 col-xs-12 col-sm-12" style="border:#000FFF solid 0px;height:auto;">
         <div class="row">
             <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
-                <a href="/editor/newArticle?userName=panteng" target="_blank">
+                <a href="/editor/newArticle" target="_blank">
                     <img src="/images/addArticle.png" style="max-width:100%; height:50px" class="img-polaroid">
                 </a>
                 <br>
                 <label>添加文章</label>
             </div>
-            <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
+            <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center;display:none;">
                 <a href="/editor/newArticle?userName=panteng" target="_blank">
                     <img src="/images/recommended.png" style="max-width:100%;height:50px" class="img-polaroid">
                 </a>
                 <br>
                 <label>推荐文章</label>
             </div>
-            <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
+            <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center;display:none;">
                 <a href="/editor/newArticle?userName=panteng" target="_blank">
                     <img src="/images/programers.png" style="max-width:100%;height:50px" class="img-polaroid">
                 </a>
                 <br>
                 <label>猿媛简历</label>
             </div>
-            <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center">
+            <div class="col-md-6 col-xs-6 col-sm-6" style="text-align:center;display:none;">
                 <a href="/editor/newArticle?userName=panteng" target="_blank">
                     <img src="/images/contract.png" style="max-width:100%;height:50px" class="img-polaroid">
                 </a>
@@ -83,15 +91,15 @@
          style="border:#009393 solid 0px;background-color:#99CCFF">
         <div v-for="article in articles"
              style="margin-bottom:10px;box-shadow: 5px 5px 2px #3366CC;background-color:#F0F0F0; border:#00CC66 1px solid;margin-top:5px;">
-            <a v-bind:href="['/attached/html/panteng/' + article.fileName + '.html']" target="_blank"><h3>
+            <a v-bind:href="['/attached/html/' + article.nickName + '/' + article.fileName + '.html']" target="_blank"><h3>
                 {{article.title}}</h3></a>
             <hr>
             <div class="form-inline">
-                <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[0]}}</span>&nbsp
-                <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[1]}}</span>&nbsp
-                <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[2]}}</span>&nbsp
-                <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[3]}}</span>&nbsp
-                <span style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[4]}}</span>&nbsp
+                <span v-cloak style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[0]}}</span>&nbsp
+                <span v-cloak style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[1]}}</span>&nbsp
+                <span v-cloak style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[2]}}</span>&nbsp
+                <span v-cloak style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[3]}}</span>&nbsp
+                <span v-cloak style="background:#E0E0E0;border:1px solid #A0A0A0">{{article.tags[4]}}</span>&nbsp
             </div>
             <br>
                     	<span>
@@ -101,10 +109,12 @@
                     		{{article.nickName}}&nbsp|&nbsp{{article.pubTime}}&nbsp
                     	</span>
         </div>
-        <div style="float:right;position: relative;margin-top: -600px;z-index: 2">
-            <a href="javascript:scroll(0,0)">返回顶部</a>
+        <div class="fd">
+            <a href="javascript:scroll(0,0)">
+            	<img alt="回到顶部" src="/images/top.jpg" style="height:49px;width:49px">
+            </a>
         </div>
-        <div style="text-align: center; height: 200px">
+        <div style="text-align: center;">
             <span>加载中... ...</span>
             <a onclick="getArticleList()">手动加载</a>
         </div>
@@ -139,6 +149,7 @@
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 <script type="text/javascript">
+    var currentNum=1;
     var userName = new Vue({
         el: "#userName",
         data: {
@@ -189,7 +200,7 @@
 
     function getArticleList() {
         $.ajax({
-            url: '/articleList?pageNum=1',
+            url: '/articleList?pageNum='+currentNum,
             type: 'POST', //GET
             data: '',
             async: true,    //或false,是否异步
@@ -198,6 +209,7 @@
             success: function (resp) {
                 console.log(typeof resp);
                 articleList.articles = articleList.articles.concat(resp);
+                currentNum=currentNum+1;
             }
         });
     }
@@ -217,17 +229,7 @@
     /*添加滚动监听事件*/
     $(window).bind('scroll', function () {
         if (isScrollBottom(window)) {
-            $.ajax({
-                url: '/articleList?pageNum=1',
-                type: 'POST', //GET
-                data: '',
-                async: true,    //或false,是否异步
-                timeout: 15000,    //超时时间
-                dataType: 'json', //返回的数据格式：json/xml/html/script/jsonp/text
-                success: function (resp) {
-                    articleList.articles = articleList.articles.concat(resp);
-                }
-            });
+            getArticleList();
         }
     });
 </script>
