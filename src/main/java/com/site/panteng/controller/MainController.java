@@ -125,7 +125,7 @@ public class MainController {
             HttpSession session = req.getSession();
             session.setAttribute("userName", userName);
             session.setAttribute(userName, userName + userName);
-            session.setMaxInactiveInterval(60);
+            session.setMaxInactiveInterval(600);
             resp.getWriter().println("{\"loginSuccess\":\"true\"}");
             return;
         }
