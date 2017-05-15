@@ -45,9 +45,10 @@
 	                </span>
         </div>
         <div class="col-md-1 col-sm-2 col-xs-2">
-                    <span style="cursor:pointer;color:#FFF;font-weight:bold;margin-top:5px;display:block; text-align:center;"
-                          onmouseover="this.style.background='#CCCCCC'" onmouseout="this.style.background='#000000'">
-						注册
+                    <span v-cloak id="register_span" onclick="quickOrRegister()"
+                    	style="cursor:pointer;color:#FFF;font-weight:bold;margin-top:5px;display:block; text-align:center;"
+                        onmouseover="this.style.background='#CCCCCC'" onmouseout="this.style.background='#000000'">
+						{{text}}
                     </span>
         </div>
     </div>
@@ -170,7 +171,21 @@
             login: "登录"
         }
     });
-
+    
+    var register_span = new Vue({
+    	el:"#register_span",
+    	data:{
+    		text:"注册"
+    	}
+    });
+    
+	/*检测是否登录*/
+	var getUserName="<%= session.getAttribute("userName")%>";
+	if(getUserName!=null&&getUserName!=''&&getUserName!='null'){
+		login_span.login = getUserName;
+		register_span.text='退出';
+	}
+	
     function login() {
         $.ajax({
             url: '/login',
@@ -182,12 +197,22 @@
             success: function (resp) {
                 if (resp.loginSuccess == 'true') {
                     login_span.login = userName.$refs.userName.value;
+                    register_span.text='退出';
                 } else {
                     alert(resp.errorMsg);
                 }
             }
         });
     }
+    
+    function quickOrRegister(){
+    	if(register_span.text=='退出'){
+    		
+    	}else if(register_span.text=='注册'){
+    		alert("暂不支持");
+    	}
+    }
+    
     var article1 = {};
     article1.title = 'java入门';
     article1.sumary = 'java 是一门高级编程语言，最大的特性在于一次编译，到处执行';
