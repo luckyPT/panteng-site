@@ -36,8 +36,14 @@
                     猿媛客栈
                     </span>
         </div>
-        
-        <div class="col-md-1 col-md-offset-6 col-sm-2 col-sm-offset-4 col-xs-offset-4 col-xs-2">
+        <!--搜索-->
+        <div class="col-md-2 col-md-offset-4 col-xs-9 col-sm-8">
+        	<div class="input-group">
+                 <input id="searchTxt" type="text" class="form-control" onkeydown="onKeyDown(event)"/>
+                 <span class="input-group-addon" onclick="searchArticle()"><i class="glyphicon glyphicon-search"></i></span>
+             </div>
+        </div>
+        <div class="col-md-1 col-sm-2 col-xs-2 ">
 	                <span v-cloak id="login_span" data-toggle="modal" data-target="#loginModal"
                           style="cursor:pointer;color:#FFF;font-weight:bold;margin-top:5px;display:block; text-align:center;"
                           onmouseover="this.style.background='#CCCCCC'" onmouseout="this.style.background='#000000'">
@@ -151,6 +157,7 @@
         crossorigin="anonymous"></script>
 <script type="text/javascript">
     var currentNum=1;
+    var searchNum=1;
     var userName = new Vue({
         el: "#userName",
         data: {
@@ -238,6 +245,24 @@
             }
         });
     }
+    
+    function searchArticle(){
+    	if(searchNum==1){
+    		articleList.articles=[];
+    	}
+    	$.ajax({
+            url: '/articleList?pageNum='+searchNum+'&tags='+$('#searchTxt')[0].value,
+            type: 'POST', //GET
+            data: '',
+            async: true,    //或false,是否异步
+            timeout: 15000,    //超时时间
+            dataType: 'json', //返回的数据格式：json/xml/html/script/jsonp/text
+            success: function (resp) {
+                articleList.articles = articleList.articles.concat(resp);
+                searchNum=searchNum+1;
+            }
+        });
+    }
 
     getArticleList();
     /**
@@ -257,6 +282,15 @@
             getArticleList();
         }
     });
+    
+	function onKeyDown(event){
+       var e = event || window.event || arguments.callee.caller.arguments[0];           
+       if(e && e.keyCode==13){ // enter 键
+            searchArticle();
+            return;
+       }
+       
+   }
 </script>
 </body>
 </html>

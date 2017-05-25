@@ -35,12 +35,15 @@ public class ArticleDao {
 		return -1;
 	}
 	
-	public List<Article> getArticles(String userName,int pageNum,int listCount){
-		String sql = "";
+	public List<Article> getArticles(String userName,int pageNum,int listCount,String tags){
+		String sql = "select * from article where 1 ";
+		if(!Strings.isNullOrEmpty(tags)){
+			sql = sql + " and tags like '%" + tags + "%'";
+		}
 		if(Strings.isNullOrEmpty(userName)){
-			sql="select * from article limit "+(pageNum-1)*listCount + ", "+ listCount;
+			sql=sql + " limit "+(pageNum-1)*listCount + ", "+ listCount;
 		}else {
-			sql="select * from article where nickName = '" + userName+ "' " + (pageNum-1)*listCount + ", "+ listCount;
+			sql=sql + " and nickName = '" + userName+ "' " + (pageNum-1)*listCount + ", "+ listCount;
 		}
 		
 		List articles =  jdbcTemplate.queryForList(sql);
