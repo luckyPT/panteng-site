@@ -81,12 +81,8 @@
     </dependencies>
     <build>
         <finalName>ROOT</finalName>
-        <directory>/home/mi/software/apache-tomcat-7.0.77/webapps</directory>
+        <directory>/home/panteng/software/apache-tomcat-8.5.23/webapps</directory>
         <resources>
-            <!--<resource>
-                <directory>${project.basedir}/src/web</directory>
-                <filtering>true</filtering>
-            </resource>-->
             <resource>
                 <directory>${project.basedir}/src/main/resources</directory>
                 <filtering>true</filtering>
@@ -121,14 +117,6 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <!--<plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.0.0</version>
-            </plugin>-->
-            <!--<plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
